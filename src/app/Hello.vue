@@ -37,6 +37,18 @@
         </ul>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-sm-4"  v-for="o in opportunities">
+        <div class="card">
+          <div class="card-block">
+            <h4 class="card-title">{{ o.name }}</h4>
+            <p class="card-text">{{ o.description }}</p>
+            <a href="#" class="btn btn-outline-primary">Sign up</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
