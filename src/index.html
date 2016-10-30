@@ -19,9 +19,139 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <div id="map" style="height: 300px"></div>    
+
     <div class="container">
       <div id="root"></div>
     </div>
     
+    <script>
+      function initMap() {
+        var uluru = {lat: 34.025581, lng: -118.494050};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: uluru,
+          zoom: 12,
+          styles: [
+    {
+        "featureType": "administrative",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 20
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 40
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "saturation": -10
+            },
+            {
+                "lightness": 30
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            },
+            {
+                "saturation": -60
+            },
+            {
+                "lightness": 10
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            },
+            {
+                "saturation": -60
+            },
+            {
+                "lightness": 60
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            },
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 60
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            },
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 60
+            }
+        ]
+    }
+]
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+        var marker2 = new google.maps.Marker({
+          position: { lat: 34.050450, lng: -118.436247 },
+          map: map
+        })
+      }
+    </script>
+    <!-- Google Maps -->
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf1t4OrHxDHeNY3xjGMUla502iG1aza_w&callback=initMap">
+    </script>
   </body>
 </html>
