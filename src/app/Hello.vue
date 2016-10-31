@@ -85,7 +85,8 @@ export default {
       {
         name: 'Warm Clothes and Food Donation',
         lead: 'We will be having a donation point for anyone who can bring warm clothing and food for those in need. ',
-        description: 'The drop off point will be under the Vintage Christmas tree.'
+        description: 'The drop off point will be under the Vintage Christmas tree.',
+        contactPerson: 'Bob'
       }]
     };
   }
