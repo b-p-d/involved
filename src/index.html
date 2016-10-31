@@ -19,7 +19,9 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div id="map" style="height: 300px"></div>    
+    <h1 class="display-3 text-xs-center">involved</h1>
+
+    <div id="map" style="height: 400px"></div>    
 
     <div class="container">
       <div id="root"></div>
@@ -33,119 +35,100 @@
           zoom: 12,
           styles: [
     {
-        "featureType": "administrative",
+        "featureType": "all",
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "on"
+                "hue": "#ff0000"
             },
             {
                 "saturation": -100
             },
             {
-                "lightness": 20
+                "lightness": -30
             }
         ]
     },
     {
-        "featureType": "road",
-        "elementType": "all",
+        "featureType": "all",
+        "elementType": "labels.text.fill",
         "stylers": [
             {
-                "visibility": "on"
-            },
-            {
-                "saturation": -100
-            },
-            {
-                "lightness": 40
+                "color": "#ffffff"
             }
         ]
     },
     {
-        "featureType": "water",
-        "elementType": "all",
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
         "stylers": [
             {
-                "visibility": "on"
-            },
-            {
-                "saturation": -10
-            },
-            {
-                "lightness": 30
+                "color": "#353535"
             }
         ]
     },
     {
-        "featureType": "landscape.man_made",
-        "elementType": "all",
+        "featureType": "landscape",
+        "elementType": "geometry",
         "stylers": [
             {
-                "visibility": "simplified"
-            },
-            {
-                "saturation": -60
-            },
-            {
-                "lightness": 10
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.natural",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            },
-            {
-                "saturation": -60
-            },
-            {
-                "lightness": 60
+                "color": "#656565"
             }
         ]
     },
     {
         "featureType": "poi",
-        "elementType": "all",
+        "elementType": "geometry.fill",
         "stylers": [
             {
-                "visibility": "off"
-            },
-            {
-                "saturation": -100
-            },
-            {
-                "lightness": 60
+                "color": "#505050"
             }
         ]
     },
     {
-        "featureType": "transit",
-        "elementType": "all",
+        "featureType": "poi",
+        "elementType": "geometry.stroke",
         "stylers": [
             {
-                "visibility": "off"
-            },
+                "color": "#808080"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
             {
-                "saturation": -100
-            },
-            {
-                "lightness": 60
+                "color": "#454545"
             }
         ]
     }
 ]
         });
+        var SQUARE_MARKER = 'M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z';
         var marker = new google.maps.Marker({
           position: uluru,
-          map: map
+          map: map,
+          icon: {
+            path: SQUARE_MARKER,
+            fillColor: '#0275d8',
+            fillOpacity: 1,
+            strokeColor: '',
+            strokeWeight: 0
+          },
+          map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
         });
         var marker2 = new google.maps.Marker({
           position: { lat: 34.050450, lng: -118.436247 },
-          map: map
+          map: map,
+          icon: {
+            path: SQUARE_MARKER,
+            fillColor: '#0275d8',
+            fillOpacity: 1,
+            strokeColor: '',
+            strokeWeight: 0
+          },
+          map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
         })
       }
     </script>
