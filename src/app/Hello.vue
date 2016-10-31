@@ -41,9 +41,15 @@
 
     <div class="row">
       <div class="col-sm-4"  v-for="o in opportunities">
-        <div class="card">
+        <div class="card card-inverse" style="background-color: #333; border-color: #333;">
           <div class="card-block">
-            <h4 class="card-title">{{ o.name }}</h4>
+            <h4 class="card-title">
+              <p class="display-4">
+                <span class="display-4">10</span>
+                <span class="lead">December</span>
+              </p>
+              {{ o.name }}
+            </h4>
             <p class="card-text">{{ o.description }}</p>
             <a href="#" class="btn btn-outline-primary">Sign up</a>
           </div>
