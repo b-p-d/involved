@@ -8,7 +8,7 @@
           <li v-for="o in opportunities">
             <hr>
             <div class="row">
-              <div class="col-sm-2">
+              <div class="col-sm-1">
                 <ul class="text-sm-center list-unstyled">
                   <li class="lead">DEC</li>
                   <li class="display-4">10</li>
@@ -17,7 +17,7 @@
               <div class="col-sm-3">
                 <img src="https://pbs.twimg.com/media/CsKukaQUkAA7xzf.jpg" alt="some_text" style="width:200px;height:200px;">
               </div>
-              <div class="col-sm-5">
+              <div class="col-sm-6">
                 <h3 class="display-4">{{ o.name }}</h3>
                 <p class="lead">{{ o.lead }}</p>
                 <p>
