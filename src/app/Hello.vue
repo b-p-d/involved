@@ -38,7 +38,7 @@
                   <li class="smallfont">signed-up / needed</li>
                 </ul>
                 <p class="text-center">
-                  <button class="signup">Sign up!</button>
+                  <button class="signup"><a class="simple-link" style="color:#FFFFFF;" href="https://docs.google.com/forms/d/e/1FAIpQLScZF85hD8yyLisRtryvzbCo2AaFo2uMZc3m53SKZcjBXW_IMw/viewform" >Sign up!</a></button>
                  </p>
               </div>
             </div>
@@ -80,21 +80,24 @@ export default {
         date: "2016-12-10T18:00:00.000Z",
         allDay: false,
         needed: 50,
-        volunteers: 8
+        volunteers: 8,
+        signUpLink:'https://docs.google.com/forms/d/e/1FAIpQLScZF85hD8yyLisRtryvzbCo2AaFo2uMZc3m53SKZcjBXW_IMw/viewform'
       },
       {
         name: 'Westside Thanksgiving Dinner',
         lead: 'This year, the Westside Thanksgiving Dinner are expecting 5,000 people through the doors. ',
         description: 'If you can volunteer on the day, please apply on the website: westsidethanksgiving.org. This dinner is for everyone who feels they have no where to go to celebrate. Even if you can’t give your time, please invite everybody you see to attend - we want the whole of LA to have a personal invitation. If you are able to give some time before the big day, please email: westsidethanksgiving@gmail.com',
         needed: 25,
-        volunteers: 10
+        volunteers: 10,
+        signUpLink:'https://docs.google.com/forms/d/e/1FAIpQLScZF85hD8yyLisRtryvzbCo2AaFo2uMZc3m53SKZcjBXW_IMw/viewform'
       },
       {
         name: 'Angel Tree',
         lead: 'Help us give Christmas gifts to the children of incarcerated parents. ',
         description: 'We need people to write tags, sort donated gifts and deliver them too. For more info and to get involved, email: derrell.warren12@gmail.com or neggie1601@sbcglobal.net',
         needed: 100,
-        volunteers: 80
+        volunteers: 80,
+        signUpLink:'https://docs.google.com/forms/d/e/1FAIpQLScZF85hD8yyLisRtryvzbCo2AaFo2uMZc3m53SKZcjBXW_IMw/viewform'
       },
       {
         name: 'Warm Clothes and Food Donation',
@@ -102,7 +105,8 @@ export default {
         description: 'The drop off point will be under the Vintage Christmas tree.',
         contactPerson: 'Bob',
         needed: 5,
-        volunteers: 1
+        volunteers: 1,
+        signUpLink:'https://docs.google.com/forms/d/e/1FAIpQLScZF85hD8yyLisRtryvzbCo2AaFo2uMZc3m53SKZcjBXW_IMw/viewform'
       }]
     };
   }
