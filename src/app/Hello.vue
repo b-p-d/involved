@@ -37,7 +37,7 @@
                   <li class="display-4">{{ o.volunteers }} / {{ o.needed }}</li>
                   <li class="smallfont">signed-up / needed</li>
                 </ul>
-                <p class="text-center">
+                <p class="text-xs-center">
                   <button class="signup"><a class="simple-link" style="color:#FFFFFF;" href="https://docs.google.com/forms/d/e/1FAIpQLScZF85hD8yyLisRtryvzbCo2AaFo2uMZc3m53SKZcjBXW_IMw/viewform" >Sign up!</a></button>
                  </p>
               </div>
