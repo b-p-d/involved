@@ -64,15 +64,16 @@
         </div>
       </div>
     </div>
+
+    <div id="authorize-div" style="display: none">
+      <span>Authorize access to Google Calendar API</span>
+      <!--Button for the user to click to initiate auth sequence -->
+      <button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+      </button>
+    </div>
+    <pre id="output"></pre>
   </div>
-  <div id="authorize-div" style="display: none">
-  <span>Authorize access to Google Calendar API</span>
-  <!--Button for the user to click to initiate auth sequence -->
-  <button id="authorize-button" onclick="handleAuthClick(event)">
-    Authorize
-  </button>
-</div>
-<pre id="output"></pre>
 </template>
 
 <script>
@@ -125,14 +126,13 @@ export default {
 
 <script>
 
-  console.log("script is running");
   var CLIENT_ID = '651970668294-he7n6h15p0iv9b8tv3mjkd8i86jfn156.apps.googleusercontent.com';
   var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
 
       /**
     * Check if current user has authorized this application.
     */
-  function checkAuth() {
+  window.checkAuth = function() {
     gapi.auth.authorize(
       {
         'client_id': CLIENT_ID,
@@ -141,7 +141,7 @@ export default {
       }, handleAuthResult);
   }
 
-  function handleAuthResult(authResult) {
+  window.handleAuthResult = function(authResult) {
     var authorizeDiv = document.getElementById('authorize-div');
     if (authResult && !authResult.error) {
       // Hide auth UI, then load client library.
@@ -159,7 +159,7 @@ export default {
     *
     * @param {Event} event Button click event.
     */
-  function handleAuthClick(event) {
+  window.handleAuthClick = function(event) {
     gapi.auth.authorize(
       {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
       handleAuthResult);
@@ -191,18 +191,12 @@ export default {
 
     request.execute(function(resp) {
       var data= resp.items;
-      
-      this.$nextTick(function () {
-        this.$set(events,data);
-      });
-
-      console.log (events);
 
       appendPre('Upcoming events:');
 
       if (data.length > 0) {
-        for (i = 0; i < data.length; i++) {
-          var event = events[i];
+        for (var i = 0; i < data.length; i++) {
+          var event = data[i];
           var when = event.start.dateTime;
           if (!when) {
             when = event.start.date;
@@ -228,6 +222,4 @@ export default {
     pre.appendChild(textContent);
   }
 
-</script>
-<script src="https://apis.google.com/js/client.js?onload=checkAuth">
 </script>
