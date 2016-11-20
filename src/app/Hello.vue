@@ -10,8 +10,8 @@
             <div class="row">
               <div class="col-sm-1">
                 <ul class="text-sm-center list-unstyled">
-                  <li class="lead">DEC</li>
-                  <li class="display-4">10</li>
+                  <li class="lead">{{ e.month }}</li>
+                  <li class="display-4">{{ e.day }}</li>
                 </ul>
               </div>
               <div class="col-sm-3">
@@ -21,10 +21,8 @@
                 <h3 class="display-4">{{ e.summary }}</h3>
                 <p class="lead">{{ e.description }}</p>
                 <p>
+                  <i class="material-icons text-muted">location_on</i>
                   {{ e.location }}
-                </p>
-                <p>
-                  {{ e.start }}
                 </p>
                 <ul class="list-inline">
                   <!--<li class="list-inline-item" v-for="c in o.contacts">
@@ -41,7 +39,7 @@
                   <li class="smallfont">signed-up / needed</li>
                 </ul>
                 <p class="text-xs-center">
-                  <button class="signup"><a class="simple-link" style="color:#FFFFFF;" href="https://docs.google.com/forms/d/e/1FAIpQLScZF85hD8yyLisRtryvzbCo2AaFo2uMZc3m53SKZcjBXW_IMw/viewform" >Sign up!</a></button>
+                  <button class="signup"><a class="simple-link" style="color:#FFFFFF;" v-bind:href="e.signup" >Sign up!</a></button>
                  </p>
               </div>
             </div>
@@ -54,16 +52,26 @@
 </template>
 
 <script>
+var moment = require('moment');
+
 export default {
   name: 'Hello',
   created: function () {
     this.$http.get('http://localhost:3000').then(response => {
-        console.log(response);
-        this.events = response.body;
-      }, response => {
-        // error callback
-        console.log(response);
-      });
+      console.log(response);
+
+      var _events = response.body;
+
+      for (var i = 0; i < _events.length; i++) {
+        _events[i].day = moment(_events[i].start).date();
+        _events[i].month = moment(_events[i].start).format('MMM');
+      }
+
+      this.events = _events;
+    }, response => {
+      // error callback
+      console.log(response);
+    });
   },
   data() {
     return {
