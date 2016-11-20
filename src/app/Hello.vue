@@ -15,11 +15,12 @@
                 </ul>
               </div>
               <div class="col-sm-3">
-                <img src="https://pbs.twimg.com/media/CsKukaQUkAA7xzf.jpg" alt="some_text" style="width:200px;height:200px;">
+                <img v-if="e.image" v-bind:src="e.image" alt="some_text" style="width:200px;height:200px;">
               </div>
               <div class="col-sm-6">
                 <h3 class="display-4">{{ e.summary }}</h3>
-                <p class="lead">{{ e.description }}</p>
+                <p v-if="e.meta" class="lead">{{ e.meta.lead }}</p>
+                <p>{{ e.description }}</p>
                 <p>
                   <i class="material-icons text-muted">location_on</i>
                   {{ e.location }}
@@ -35,8 +36,8 @@
               </div>
               <div class="col-sm-2 text-center">
                 <ul class="text-sm-center list-unstyled">
-                  <li class="display-4">{{ e.volunteers }} / {{ e.needed }}</li>
-                  <li class="smallfont">signed-up / needed</li>
+                  <li v-if="e.meta" class="display-4">{{ e.meta.volunteers }} / {{ e.meta.needed }}</li>
+                  <li v-if="e.meta" class="smallfont">signed-up / needed</li>
                 </ul>
                 <p class="text-xs-center">
                   <button class="signup"><a class="simple-link" style="color:#FFFFFF;" v-bind:href="e.signup" >Sign up!</a></button>
