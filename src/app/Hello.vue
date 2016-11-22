@@ -8,21 +8,24 @@
           <li v-for="e in events">
             <hr>
             <div class="row">
-              <div class="col-sm-1">
-                <ul class="text-sm-center list-unstyled">
+              <div class="col-sm-4">
+                <ul class="text-sm-center list-unstyled" style="position: absolute; top: 0; left: 0; margin: 5px 20px; z-index: 100; background-color: white; opacity: 0.75; padding-left: 5px; padding-right: 5px;">
                   <li class="lead">{{ e.month }}</li>
                   <li class="display-4">{{ e.day }}</li>
                 </ul>
-              </div>
-              <div class="col-sm-3">
-                <img v-if="e.image" v-bind:src="e.image" alt="some_text" style="width:200px;height:200px;">
+                <img v-if="e.image" v-bind:src="e.image" alt="some_text" style="width:300px;height:200px; position: relative;">
+                <img v-if="!e.image" src="images/hands.jpg" style="width:300px;height:200px; position: relative;"></img>
               </div>
               <div class="col-sm-6">
                 <h3 class="display-4">{{ e.summary }}</h3>
                 <p v-if="e.meta" class="lead">{{ e.meta.lead }}</p>
                 <p>{{ e.description }}</p>
                 <p>
-                  <i class="material-icons text-muted">location_on</i>
+                  <i class="material-icons text-muted" style="vertical-align: middle;">today</i>
+                  {{ e.prettyDate }}
+                </p>
+                <p>
+                  <i class="material-icons text-muted" style="vertical-align: middle;">location_on</i>
                   {{ e.location }}
                 </p>
                 <ul class="list-inline">
@@ -39,7 +42,7 @@
                   <li v-if="e.meta" class="display-4">{{ e.meta.volunteers }} / {{ e.meta.needed }}</li>
                   <li v-if="e.meta" class="smallfont">signed-up / needed</li>
                 </ul>
-                <p class="text-xs-center">
+                <p v-if="e.signup" class="text-xs-center">
                   <button class="signup"><a class="simple-link" style="color:#FFFFFF;" v-bind:href="e.signup" >Sign up!</a></button>
                  </p>
               </div>
@@ -64,6 +67,7 @@ export default {
       var _events = response.body;
 
       for (var i = 0; i < _events.length; i++) {
+        _events[i].prettyDate = moment(_events[i].start).format('MMMM Do YYYY');
         _events[i].day = moment(_events[i].start).date();
         _events[i].month = moment(_events[i].start).format('MMM');
       }
