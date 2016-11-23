@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Hello from './app/Hello.vue';
+import Builder from './app/Builder.vue';
 
 import './index.scss';
 import VueRouter from 'vue-router';
@@ -15,6 +16,12 @@ const router = new VueRouter({
       path: '/',
       components: {
         default: Hello
+      }
+    },
+    {
+      path: '/builder',
+      components: {
+        default: Builder
       }
     }
   ]
