@@ -81,9 +81,9 @@
         </div>
 
          <!-- Output -->
-        <div class="row-fluid col-md-12 text-md-center" style="background-color:#F7F7F7;padding:0;width:100%;margin-left:0;margin-right:0">
-            <p style="padding-top:20px">{{ displayStringInstructions }}</p>
-            <p style="width:500px; height:200px">{{ displayString }}</p>
+        <div class="row col-md-12 text-md-center" style="background-color:#F7F7F7;padding:0;width:100%;margin-left:0;margin-right:0">
+            <p style="padding-top:20px;text-align:center">{{ displayStringInstructions }}</p>
+            <p style="width:500px; height:200px; text-align:center">{{ displayString }}</p>
         </div>
 
     </div>
@@ -129,7 +129,7 @@
              var jsonString = JSON.stringify(this.calendarEvent);
              var encodedString = window.btoa(jsonString);
              var heading = "--- MORE ---";
-             this.displayString = (heading + "/n" + encodedString);
+             this.displayString = (heading + "\n" + encodedString);
              this.displayStringInstructions = "Copy and paste into the Google Calendar event description";
              console.log("hello!");
          }
