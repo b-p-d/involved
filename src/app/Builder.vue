@@ -83,7 +83,7 @@
          <!-- Output -->
         <div class="row col-md-12 text-md-center" style="background-color:#F7F7F7;padding:0;width:100%;margin-left:0;margin-right:0">
             <p style="padding-top:20px;text-align:center">{{ displayStringInstructions }}</p>
-            <p style="width:500px; height:200px; text-align:center">{{ displayString }}</p>
+            <pre style="width:500px; height:200px; text-align:center">{{ displayString }}</pre>
         </div>
 
     </div>
