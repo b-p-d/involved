@@ -66,7 +66,7 @@
                 <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="singlebutton"></label>
                 <div class="col-md-8 text-md-right">
-                    <button v-on:click="encode" class="btn btn-primary">Submit</button>
+                    <button type="button" v-on:click="encode" class="btn btn-primary">Submit</button>
                 </div>
                 </div>
 
