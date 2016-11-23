@@ -13,8 +13,8 @@
                   <li class="lead">{{ e.month }}</li>
                   <li class="display-4">{{ e.day }}</li>
                 </ul>
-                <img v-if="e.image" v-bind:src="e.image" alt="some_text" style="width:300px;height:200px; position: relative;">
-                <img v-if="!e.image" src="images/hands.jpg" style="width:300px;height:200px; position: relative;"></img>
+                <img v-if="e.meta && e.meta.image" v-bind:src="e.meta.image" alt="some_text" style="width:300px;height:200px; position: relative;">
+                <img v-if="!e.meta || !e.meta.image" src="images/hands.jpg" style="width:300px;height:200px; position: relative;"></img>
               </div>
               <div class="col-sm-6">
                 <h3 class="display-4">{{ e.summary }}</h3>
@@ -42,8 +42,8 @@
                   <li v-if="e.meta" class="display-4">{{ e.meta.volunteers }} / {{ e.meta.needed }}</li>
                   <li v-if="e.meta" class="smallfont">signed-up / needed</li>
                 </ul>
-                <p v-if="e.signup" class="text-xs-center">
-                  <button class="signup"><a class="simple-link" style="color:#FFFFFF;" v-bind:href="e.signup" >Sign up!</a></button>
+                <p v-if="e.meta && e.meta.signup" class="text-xs-center">
+                  <button class="signup"><a class="simple-link" style="color:#FFFFFF;" v-bind:href="e.meta.signup" >Sign up!</a></button>
                  </p>
               </div>
             </div>
