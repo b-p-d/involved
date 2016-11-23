@@ -48,7 +48,7 @@
                 <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="textinput">Image url</label>  
                 <div class="col-md-8">
-                <input id="textinput" name="textinput" type="text" placeholder="Enter link to image" class="form-control input-md" v-model="calendarEvent.image">
+                <input id="textinput" name="textinput" type="text" placeholder="Enter image link" class="form-control input-md" v-model="calendarEvent.image">
                     
                 </div>
                 </div>
@@ -57,7 +57,7 @@
                 <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="textinput">Sign up form url</label>  
                 <div class="col-md-8">
-                <input id="textinput" name="textinput" type="text" placeholder="Enter link to sign up form" class="form-control input-md" v-model="calendarEvent.signup">
+                <input id="textinput" name="textinput" type="text" placeholder="Enter sign up form link" class="form-control input-md" v-model="calendarEvent.signup">
                     
                 </div>
                 </div>
