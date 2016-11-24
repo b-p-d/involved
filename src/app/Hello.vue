@@ -82,7 +82,7 @@ var moment = require('moment');
 export default {
   name: 'Hello',
   created: function () {
-    this.$http.get('http://localhost:3000').then(response => {
+    this.$http.get('http://localhost:9000').then(response => {
       console.log(response);
 
       var _events = response.body;
