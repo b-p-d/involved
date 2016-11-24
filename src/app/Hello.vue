@@ -18,24 +18,45 @@
               </div>
               <div class="col-sm-6">
                 <h3 class="display-4">{{ e.summary }}</h3>
-                <p v-if="e.meta" class="lead">{{ e.meta.lead }}</p>
+                <!--<p v-if="e.meta" class="lead">{{ e.meta.lead }}</p>-->
                 <p>{{ e.description }}</p>
-                <p>
+                <p v-if="e.email">
+                  <i class="material-icons text-muted" style="vertical-align: middle;">email</i>
+                  {{ e.email }}
+                </p>
+                
+                <!-- Spans multiple days-->
+                <p v-if="e.multiday === true">
                   <i class="material-icons text-muted" style="vertical-align: middle;">today</i>
-                  {{ e.prettyDate }}
+                  {{ e.startDate }} to {{ e.endDate }}
                 </p>
-                <p>
+
+                <!-- All day-->
+                 <p v-else-if="e.allDay === true">
+                  <i class="material-icons text-muted" style="vertical-align: middle;">today</i>
+                  All day event </br>
+                  {{ e.startDate }}
+                </p>
+
+                <!-- Specific time-->
+                <p v-else>
+                  <i class="material-icons text-muted" style="vertical-align: middle;">today</i>
+                  {{ e.startTime }} - {{ e.endTime }} </br>
+                  {{ e.startDate }}
+                </p>
+
+                <p v-if="e.location">
                   <i class="material-icons text-muted" style="vertical-align: middle;">location_on</i>
-                  {{ e.location }}
+                  <a v-bind:href="e.url">{{ e.location }}</a>
                 </p>
-                <ul class="list-inline">
-                  <!--<li class="list-inline-item" v-for="c in o.contacts">
+                <!--<ul class="list-inline">
+                  <li class="list-inline-item" v-for="c in o.contacts">
                     <a :href="c.link">
                       <i class="material-icons">email</i>
                       {{ e.email }}
                     </a>
-                  </li>-->
-                </ul>
+                  </li>
+                </ul>-->
               </div>
               <div class="col-sm-2 text-center">
                 <ul class="text-sm-center list-unstyled">
@@ -67,12 +88,56 @@ export default {
       var _events = response.body;
 
       for (var i = 0; i < _events.length; i++) {
-        _events[i].prettyDate = moment(_events[i].start).format('MMMM Do YYYY');
-        _events[i].day = moment(_events[i].start).date();
-        _events[i].month = moment(_events[i].start).format('MMM');
+
+        _events[i].url = "http://maps.google.com/?q=" + _events[i].location;
+
+        var start;
+        var end;
+
+        if (_events[i].start && _events[i].end) {
+            start = moment(_events[i].start);
+            end = moment(_events[i].end);
+            _events[i].allDay = true;
+
+            var duration = moment.duration(end.diff(start));
+            var days = duration.asDays();
+
+            if (days > 1) {
+              console.log("yes multiday");
+              _events[i].multiday = true;
+            } else {
+              console.log("no multiday");
+              _events[i].multiday = false;
+            }
+        }
+
+        if (_events[i].startTime && _events[i].endTime) {
+            start = moment(_events[i].startTime);
+            end = moment(_events[i].endTime);
+            _events[i].startTime =start.format('hh:mm a');
+            _events[i].endTime =end.format('hh:mm a');
+            _events[i].allDay = false;
+
+            var endDateString = moment(_events[i].endTime).format('MMMM Do YYYY');
+            var startDateString = moment(_events[i].startTime).format('MMMM Do YYYY');
+
+            if (endDateString === startDateString) {
+              console.log("they are equal");
+               _events[i].multiday = false;
+            } else {
+              console.log("they are not equal");
+              _events[i].multiday = true;
+            }
+        }
+
+        _events[i].startDate =start.format('MMMM Do YYYY');
+        _events[i].day = start.date();
+        _events[i].month = start.format('MMM');
+       _events[i].endDate =end.format('MMMM Do YYYY');
       }
 
       this.events = _events;
+
     }, response => {
       // error callback
       console.log(response);
