@@ -32,39 +32,39 @@
                 </p>
 
                 <!-- All day-->
-                 <p v-else-if="e.allDay === true">
+                 <p v-if="e.allDay === true && e.multiday == false">
                   <i class="material-icons text-muted" style="vertical-align: middle;">today</i>
-                  All day event </br>
                   {{ e.startDate }}
                 </p>
 
                 <!-- Specific time-->
-                <p v-else>
+                <p v-if="e.allDay == false && e.multiday == false">
                   <i class="material-icons text-muted" style="vertical-align: middle;">today</i>
-                  {{ e.startTime }} - {{ e.endTime }} </br>
-                  {{ e.startDate }}
+                  {{ e.startDate }} </br>
+                  &#160&#160&#160&#160&#160&#160&#160{{ e.startTime }} - {{ e.endTime }}
+                  
                 </p>
 
                 <p v-if="e.location">
                   <i class="material-icons text-muted" style="vertical-align: middle;">location_on</i>
-                  <a v-bind:href="e.url">{{ e.location }}</a>
+                  <a class="simple-link" style="color:#00CCBB" v-bind:href="e.url">{{ e.location }}</a>
                 </p>
-                <!--<ul class="list-inline">
-                  <li class="list-inline-item" v-for="c in o.contacts">
-                    <a :href="c.link">
-                      <i class="material-icons">email</i>
-                      {{ e.email }}
-                    </a>
-                  </li>
-                </ul>-->
               </div>
               <div class="col-sm-2 text-center">
-                <ul class="text-sm-center list-unstyled">
-                  <li v-if="e.meta" class="display-4">{{ e.meta.volunteers }} / {{ e.meta.needed }}</li>
-                  <li v-if="e.meta" class="smallfont">signed-up / needed</li>
+                <ul v-if="e.meta && e.meta.needed == null && e.meta.volunteers" class="text-sm-center list-unstyled">
+                  <li class="display-4">{{ e.meta.volunteers }}</li>
+                  <li class="smallfont">signed-up</li>
+                </ul>
+                <ul v-if="e.meta && e.meta.needed && e.meta.volunteers == null" class="text-sm-center list-unstyled">
+                  <li class="display-4">{{ e.meta.needed }}</li>
+                  <li class="smallfont">needed</li>
+                </ul>
+                <ul v-if="e.meta && e.meta.needed && e.meta.volunteers" class="text-sm-center list-unstyled">
+                  <li class="display-4">{{ e.meta.volunteers }} / {{ e.meta.needed }}</li>
+                  <li class="smallfont">signed-up / needed</li>
                 </ul>
                 <p v-if="e.meta && e.meta.signup" class="text-xs-center">
-                  <button class="signup"><a class="simple-link" style="color:#FFFFFF;" v-bind:href="e.meta.signup" >Sign up!</a></button>
+                  <button class="signup"><a  style="color:#FFFFFF" v-bind:href="e.meta.signup" >Sign up!</a></button>
                  </p>
               </div>
             </div>
@@ -99,6 +99,9 @@ export default {
             end = moment(_events[i].end);
             _events[i].allDay = true;
 
+          
+            end.subtract (1,'hour');
+
             var duration = moment.duration(end.diff(start));
             var days = duration.asDays();
 
@@ -114,12 +117,12 @@ export default {
         if (_events[i].startTime && _events[i].endTime) {
             start = moment(_events[i].startTime);
             end = moment(_events[i].endTime);
-            _events[i].startTime =start.format('hh:mm a');
-            _events[i].endTime =end.format('hh:mm a');
+            _events[i].startTime =start.format('h:mma');
+            _events[i].endTime =end.format('h:mma');
             _events[i].allDay = false;
 
-            var endDateString = moment(_events[i].endTime).format('MMMM Do YYYY');
-            var startDateString = moment(_events[i].startTime).format('MMMM Do YYYY');
+            var endDateString = moment(_events[i].endTime).format('MMMM Do, YYYY');
+            var startDateString = moment(_events[i].startTime).format('MMMM Do, YYYY');
 
             if (endDateString === startDateString) {
               console.log("they are equal");
@@ -130,10 +133,10 @@ export default {
             }
         }
 
-        _events[i].startDate =start.format('MMMM Do YYYY');
+        _events[i].startDate =start.format('dddd MMMM Do');
         _events[i].day = start.date();
         _events[i].month = start.format('MMM');
-       _events[i].endDate =end.format('MMMM Do YYYY');
+       _events[i].endDate =end.format('dddd MMMM Do');
       }
 
       this.events = _events;
