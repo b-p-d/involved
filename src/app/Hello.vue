@@ -1,7 +1,9 @@
 <template>
   <div class="calendar-list">
 
-    <div class="row">
+    <involve-map></involve-map>
+
+    <div class="row" style="margin-top: 300px;">
       <div class="col-sm-12">
 
         <ul class="list-unstyled">

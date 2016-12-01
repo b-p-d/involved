@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Hello from './app/Hello.vue';
+import Map from './app/Map.vue';
 import Builder from './app/Builder.vue';
 
 import './index.scss';
@@ -8,6 +9,8 @@ Vue.use(VueRouter);
 
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
+
+Vue.component('involve-map', Map);
 
 const router = new VueRouter({
   mode: 'history',
