@@ -22,10 +22,6 @@
                 <h3 class="display-4">{{ e.summary }}</h3>
                 <!--<p v-if="e.meta" class="lead">{{ e.meta.lead }}</p>-->
                 <p>{{ e.description }}</p>
-                <p v-if="e.email">
-                  <i class="material-icons text-muted" style="vertical-align: middle;">email</i>
-                  {{ e.email }}
-                </p>
                 
                 <!-- Spans multiple days-->
                 <p v-if="e.multiday === true">
@@ -47,10 +43,20 @@
                   
                 </p>
 
+                <p v-if="e.email">
+                  <i class="material-icons text-muted" style="vertical-align: middle;">email</i>
+                  <a style=" color: rgb(0, 204, 187);" v-bind:href="'mailto:' + e.email">{{ e.email }}</a>
+                </p>
+
                 <p v-if="e.location">
                   <i class="material-icons text-muted" style="vertical-align: middle;">location_on</i>
                   <a class="simple-link" style="color:#00CCBB" v-bind:href="e.url">{{ e.location }}</a>
                 </p>
+
+                <ul class="list-inline">
+                  <li class="list-inline-item"><a style=" color: rgb(0, 204, 187);" href><i class="material-icons" style="vertical-align: text-top; font-size: 18px;">share</i> Share</a></li>
+                  <li class="list-inline-item"><a style=" color: rgb(0, 204, 187);" href><i class="material-icons" style="vertical-align: text-top; font-size: 18px;">today</i> Add to calendar</a></li>
+                </ul>
               </div>
               <div class="col-sm-2 text-center">
                 <ul v-if="e.meta && e.meta.needed == null && e.meta.volunteers" class="text-sm-center list-unstyled">
@@ -66,7 +72,7 @@
                   <li class="smallfont">signed-up / needed</li>
                 </ul>
                 <p v-if="e.meta && e.meta.signup" class="text-xs-center">
-                  <button class="signup"><a  style="color:#FFFFFF" v-bind:href="e.meta.signup" >Sign up!</a></button>
+                  <button class="signup"><a  style="color:#FFFFFF" target="_blank" v-bind:href="e.meta.signup" >Sign up!</a></button>
                  </p>
               </div>
             </div>
